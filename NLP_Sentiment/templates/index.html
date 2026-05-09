@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sentiment Analysis</title>
+    <meta name="description" content="Predict the sentiment of mobile reviews using a Machine Learning model.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header class="header">
+            <div class="badge">NLP Powered</div>
+            <h1>Sentiment Analysis</h1>
+            <p>Enter a mobile review below to uncover the hidden sentiment behind the words using our AI model.</p>
+        </header>
+
+        <section class="about-card">
+            <h2>Project Overview</h2>
+            <p>This project analyzes mobile device reviews using a hybrid approach, combining Supervised NLP for sentiment prediction and Unsupervised Learning for topic discovery.</p>
+            
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-target="tab-nlp">NLP (Supervised)</button>
+                    <button class="tab-btn" data-target="tab-unsupervised">Unsupervised Learning</button>
+                </div>
+                
+                <div class="tab-content active" id="tab-nlp">
+                    <div class="tech-item">
+                        <span class="tech-icon">🧹</span>
+                        <div>
+                            <h3>Data Preprocessing</h3>
+                            <p>Raw text is cleaned using NLTK (stop-word removal & regex formatting).</p>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🔢</span>
+                        <div>
+                            <h3>TF-IDF Vectorization</h3>
+                            <p>Text is converted to numerical matrices representing word importance.</p>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🤖</span>
+                        <div>
+                            <h3>Classification Models</h3>
+                            <p>Random Forest & Logistic Regression models are trained to predict Positive/Negative sentiment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-unsupervised">
+                    <div class="tech-item">
+                        <span class="tech-icon">📊</span>
+                        <div>
+                            <h3>Latent Dirichlet Allocation (LDA)</h3>
+                            <p>Used to perform Topic Modeling, extracting underlying themes and keywords across all reviews.</p>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🎯</span>
+                        <div>
+                            <h3>K-Means Clustering</h3>
+                            <p>Groups similar mobile reviews into distinct clusters to automatically discover user feedback patterns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="analysis-card">
+            <div class="input-group">
+                <label for="reviewInput">Review Text</label>
+                <textarea id="reviewInput" placeholder="e.g. The battery life on this phone is terrible and it overheats constantly..." rows="5"></textarea>
+            </div>
+            
+            <button id="analyzeBtn" class="btn-primary">
+                <span class="btn-text">Analyze Sentiment</span>
+                <span class="btn-loader"></span>
+            </button>
+        </section>
+
+        <section id="resultContainer" class="result-container hidden">
+            <div class="result-card">
+                <h2>Prediction Result</h2>
+                <div id="sentimentBadge" class="sentiment-badge">
+                    <span id="sentimentText">Positive</span>
+                    <svg class="sentiment-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Path set dynamically by JS -->
+                    </svg>
+                </div>
+                
+                <div class="clean-text-section">
+                    <h3>Cleaned Data (Model Input)</h3>
+                    <p id="cleanTextDisplay" class="clean-text">clean text goes here</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
